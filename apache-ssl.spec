@@ -1,4 +1,4 @@
-%define rver	1.3.37
+%define rver	1.3.39
 %define sslver	1.57
 
 %define target	httpsd
