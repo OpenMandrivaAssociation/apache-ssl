@@ -9,7 +9,7 @@
 Summary:	Apache-SSL is a secure Webserver
 Name:		apache-ssl
 Version:	%{rver}_%{sslver}
-Release:	%mkrel 3
+Release:	%mkrel 1
 Group:		System/Servers
 License:	BSD-style
 URL:		http://www.apache-ssl.org/
