@@ -38,6 +38,7 @@ BuildRequires:	db4-devel
 BuildRequires:	glibc-devel
 BuildRequires:	openssl-devel >= 0.9.8a
 Provides:	webserver 
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 Apache-SSL is a secure Webserver, based on Apache and SSLeay/OpenSSL. It is 
