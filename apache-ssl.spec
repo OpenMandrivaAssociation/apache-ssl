@@ -1,4 +1,4 @@
-%define rver	1.3.39
+%define rver	1.3.41
 %define sslver	1.57
 
 %define target	httpsd
@@ -375,12 +375,14 @@ fi
 %doc CHANGES.SSL EXTRAS.SSL LICENCE.SSL README.SSL SECURITY manual %{target}-VANILLA.conf
 %doc mod_throttle.CHANGES mod_throttle.html mod_throttle.LICENSE
 %doc mod_put.html mod_gzip ChangeLog.mod_gzip mod_gzip.conf.sample
+%attr(0755,root,root) %dir %{_sysconfdir}/%{target}
+%attr(0755,root,root) %dir %{_sysconfdir}/%{target}/conf
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/%{target}/conf/%{target}.conf
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/%{target}/conf/magic
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/%{target}/conf/mime.types
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/logrotate.d/%{target}
 #%attr(0644,root,root) %config(noreplace) %{_sysconfdir}/ssl/%{target}/
-%attr(0755,root,root) %config(noreplace) %{_initrddir}/%{target}
+%attr(0755,root,root) %{_initrddir}/%{target}
 %attr(0700,root,root) %dir %{_sysconfdir}/ssl/%{target}
 
 %{_bindir}/%{target}-checkgid
@@ -394,19 +396,22 @@ fi
 %{_sbindir}/%{target}-rotatelogs
 %{_sbindir}/%{target}
 %{_sbindir}/gcache
+
+%attr(0755,root,root) %dir %{_libdir}/%{target}
 %{_libdir}/%{target}/*.exp
 %{_libdir}/%{target}/*.ep
 %{_libdir}/%{target}/*.so
 
 %attr(0754,%{u_name},%{g_name}) %dir %{__root}
 %attr(0754,%{u_name},%{g_name}) %dir %{__root}/html
+%attr(0754,%{u_name},%{g_name}) %dir %{__root}/icons
 %attr(0754,%{u_name},%{g_name}) %dir /var/run/%{target}
 %attr(0754,%{u_name},%{g_name}) %dir /var/log/%{target}
 %attr(0754,%{u_name},%{g_name}) %dir /var/cache/%{target}
 %attr(0754,%{u_name},%{g_name}) %dir %{__root}/cgi-bin
 
 # web contents
-%{__root}/icons
+%{__root}/icons/*
 %attr(0644,root,root) %config(noreplace) %{__root}/html/index.html
 %attr(0644,root,root) %config(noreplace) %{__root}/html/favicon.ico
 %attr(0644,root,root) %config(noreplace) %{__root}/html/robots.txt
@@ -430,7 +435,6 @@ fi
 %doc src/support/suexec.[ch]
 %{_sbindir}/%{target}-apxs
 %{_libdir}/%{target}/*.a
-%{_includedir}/%{target}
+%attr(0755,root,root) %dir %{_includedir}/%{target}
+%{_includedir}/%{target}/*
 %{_mandir}/man8/%{target}-apxs.8*
-
-
