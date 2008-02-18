@@ -6,7 +6,7 @@
 %define u_name	apassl
 %define g_name	apassl
 
-Summary:	Apache-SSL is a secure Webserver
+Summary:	Secure Webserver
 Name:		apache-ssl
 Version:	%{rver}_%{sslver}
 Release:	%mkrel 1
