@@ -9,7 +9,7 @@
 Summary:	Secure Webserver
 Name:		apache-ssl
 Version:	%{rver}_%{sslver}
-Release:	%mkrel 2
+Release:	%mkrel 3
 Group:		System/Servers
 License:	BSD-style
 URL:		http://www.apache-ssl.org/
