@@ -1,5 +1,5 @@
 %define rver	1.3.41
-%define sslver	1.57
+%define sslver	1.59
 
 %define target	httpsd
 %define __root	/var/lib/%{target}
@@ -9,13 +9,13 @@
 Summary:	Secure Webserver
 Name:		apache-ssl
 Version:	%{rver}_%{sslver}
-Release:	%mkrel 3
+Release:	%mkrel 1
 Group:		System/Servers
 License:	BSD-style
 URL:		http://www.apache-ssl.org/
 Source0:	http://archive.apache.org/dist/httpd/apache_%{rver}.tar.gz
 Source1:	http://archive.apache.org/dist/httpd/apache_%{rver}.tar.gz.asc
-Source2:	apache_1.3.34+ssl_%{sslver}.tar.gz
+Source2:	ftp://ftp.ox.ac.uk/pub/crypto/SSL/Apache-SSL/apache_1.3.41+ssl_%{sslver}.tar.gz
 Source3:	apache-ssl.init
 Source4:	apache-ssl.conf
 Source5:	mandrivalinux_web_contents.tar.gz
@@ -38,7 +38,7 @@ BuildRequires:	db4-devel
 BuildRequires:	glibc-devel
 BuildRequires:	openssl-devel >= 0.9.8a
 Provides:	webserver 
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Apache-SSL is a secure Webserver, based on Apache and SSLeay/OpenSSL. It is 
@@ -83,7 +83,7 @@ for it, you'll need to install this package.
 %patch8 -p0 -b .fPIC
 
 # apply the apache-ssl patch
-perl -pi -e "s|\"1\.3\.34\"|\"%{rver}\"|g" SSLpatch
+#perl -pi -e "s|\"1\.3\.34\"|\"%{rver}\"|g" SSLpatch
 patch -p1 < SSLpatch
 
 #Correct perl paths
@@ -143,7 +143,7 @@ perl -pi -e "s|libgzip|mod_gzip|g" src/modules/gzip/Makefile.tmpl
 
 %serverbuild
 
-export OPTIM="%{optflags} -fno-strict-aliasing"
+export OPTIM="$CFLAGS -fno-strict-aliasing"
 export CFLAGS="-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DUSE_FCNTL_SERIALIZED_ACCEPT -DHARD_SERVER_LIMIT=2048 -DDB_DBM_HSEARCH"
 export LIBS="-lpthread"
 
@@ -228,7 +228,7 @@ make -C src/support \
     ab
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 make \
     root=%{buildroot} \
@@ -368,7 +368,7 @@ fi
 %_postun_userdel %{u_name}
 
 %clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot} 
+rm -rf %{buildroot} 
 
 %files 
 %defattr(-,root,root)
