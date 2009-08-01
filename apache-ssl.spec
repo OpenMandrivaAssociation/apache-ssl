@@ -1,4 +1,5 @@
 %define _default_patch_fuzz 2
+%define Werror_cflags %nil
 
 %define rver	1.3.41
 %define sslver	1.59
