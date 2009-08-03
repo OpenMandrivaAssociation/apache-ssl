@@ -142,6 +142,9 @@ perl -pi -e "s|libssl|mod_ssl|g" src/modules/ssl/Makefile.tmpl
 perl -pi -e "s|libproxy|mod_proxy|g" src/modules/proxy/Makefile.tmpl
 perl -pi -e "s|libgzip|mod_gzip|g" src/modules/gzip/Makefile.tmpl
 
+# fix build
+perl -pi -e 's|getline|my_getline|' src/support/*.c
+
 %build
 
 %serverbuild
