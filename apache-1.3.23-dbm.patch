@@ -1,0 +1,53 @@
+diff -Naurp apache_1.3.41/src/helpers/find-dbm-lib apache_1.3.41.oden/src/helpers/find-dbm-lib
+--- apache_1.3.41/src/helpers/find-dbm-lib	2006-07-12 10:16:05.000000000 +0200
++++ apache_1.3.41.oden/src/helpers/find-dbm-lib	2008-01-18 18:00:54.000000000 +0100
+@@ -29,7 +29,22 @@ if [ "x$found_dbm" = "x" ]; then
+ 	    *-linux*)
+ 		# many systems don't have -ldbm
+ 		DBM_LIB=""
+-		if ./helpers/TestCompile lib ndbm dbm_open; then
++                if ./helpers/TestCompile lib db-4.6 __db_ndbm_open; then
++                    DBM_LIB="-ldb-4.6"
++                    CFLAGS="$CFLAGS -I/usr/include/db4"
++                elif ./helpers/TestCompile lib db-4.5 __db_ndbm_open; then
++                    DBM_LIB="-ldb-4.5"
++                    CFLAGS="$CFLAGS -I/usr/include/db4"
++                elif ./helpers/TestCompile lib db-4.4 __db_ndbm_open; then
++                    DBM_LIB="-ldb-4.4"
++                    CFLAGS="$CFLAGS -I/usr/include/db4"
++                elif ./helpers/TestCompile lib db-4.3 __db_ndbm_open; then
++                    DBM_LIB="-ldb-4.3"
++                    CFLAGS="$CFLAGS -I/usr/include/db4"A
++                elif ./helpers/TestCompile lib db-4.2 __db_ndbm_open; then
++                    DBM_LIB="-ldb-4.2"
++                    CFLAGS="$CFLAGS -I/usr/include/db4" 
++		elif ./helpers/TestCompile lib ndbm dbm_open; then
+ 		    DBM_LIB="-lndbm"
+ 		    if ./helpers/TestCompile lib db1 dbm_open; then
+ 			# Red Hat needs this; ndbm.h lives in db1
+diff -Naurp apache_1.3.41/src/modules/standard/mod_auth_dbm.c apache_1.3.41.oden/src/modules/standard/mod_auth_dbm.c
+--- apache_1.3.41/src/modules/standard/mod_auth_dbm.c	2006-07-12 10:16:05.000000000 +0200
++++ apache_1.3.41.oden/src/modules/standard/mod_auth_dbm.c	2008-01-18 17:59:40.000000000 +0100
+@@ -39,7 +39,8 @@
+ #define dbm_fetch sdbm_fetch
+ #define dbm_close sdbm_close
+ #else
+-#include <ndbm.h>
++#define DB_DBM_HSEARCH 1
++#include <db4/db.h>
+ #endif
+ 
+ /*
+diff -Naurp apache_1.3.41/src/modules/standard/mod_rewrite.h apache_1.3.41.oden/src/modules/standard/mod_rewrite.h
+--- apache_1.3.41/src/modules/standard/mod_rewrite.h	2006-07-12 10:16:05.000000000 +0200
++++ apache_1.3.41.oden/src/modules/standard/mod_rewrite.h	2008-01-18 17:59:40.000000000 +0100
+@@ -88,7 +88,8 @@
+      * so we also need to know the file extension
+      */
+ #ifndef NO_DBM_REWRITEMAP
+-#include <ndbm.h>
++#define DB_DBM_HSEARCH 1
++#include <db4/db.h>
+ #if defined(DBM_SUFFIX)
+ #define NDBM_FILE_SUFFIX DBM_SUFFIX
+ #elif defined(__FreeBSD__) || (defined(DB_LOCK) && defined(DB_SHMEM))

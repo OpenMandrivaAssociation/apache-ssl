@@ -1,0 +1,17 @@
+--- src/support/httpd.8.mdk	Mon Dec 17 13:36:23 2001
++++ src/support/httpd.8	Mon Dec 17 13:36:54 2001
+@@ -112,7 +112,7 @@
+ this process is written to a file as given in the configuration file.
+ Alternatively 
+ .B httpd 
+-may be invoked by the Internet daemon inetd(8) each
++may be invoked by the Internet daemon xinetd(8) each
+ time a connection to the HTTP service is made.
+ .PP
+ This manual page only lists the command line arguments. For details
+@@ -212,4 +212,4 @@
+ .B /usr/local/apache/logs/httpd.pid
+ .PD
+ .SH SEE ALSO
+-.BR inetd (8).
++.BR xinetd (8).

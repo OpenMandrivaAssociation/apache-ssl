@@ -1,0 +1,10 @@
+sources:
+  "apache_1.3.41+ssl_1.59.tar.gz:"	910ff3993f0fc65b40deae5c4877735c00809435
+  "apache_1.3.41.tar.gz:"	3bbd4c4bc648e6ad5b696bb83420533f4d23daf8
+  "apache_1.3.41.tar.gz.asc:"	f993f1595a6e58a632d16466e78731f18d464878
+  "apache-ssl.conf:"	9e4f1a1643c267a4a8134fd139daf402c5ccb9d5
+  "apache-ssl.init:"	4ae7f97dc4e5f6f869a132e4af774f0e3f2cb76d
+  "mandrivalinux_web_contents.tar.gz:"	f44ce252cefbf04aac14cd87606974362944b6c1
+  "mod_gzip-1.3.26.1a.tar.gz:"	1e3457624cfcc22022650ef9200cb79670634a21
+  "mod_put-1.3.tar.gz:"	18b5c0796b83fb98d9a329c57d72bad9ccab1860
+  "mod_throttle-3.1.2.tar.gz:"	37964becc56527c8b1b658d8249c05dea8d2a934

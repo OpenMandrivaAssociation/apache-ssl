@@ -1,0 +1,11 @@
+--- src/Configure	2003-07-16 22:27:08.000000000 +0200
++++ src/Configure.oden	2004-08-03 16:06:51.418948648 +0200
+@@ -1103,7 +1103,7 @@
+ 	    ;;
+ 	*-linux2*)
+ 		LD_SHLIB="gcc"
+-	    CFLAGS_SHLIB="-fpic"
++	    CFLAGS_SHLIB="-fPIC"
+ 	    LDFLAGS_SHLIB="-shared"
+ 	    LDFLAGS_MOD_SHLIB=$LDFLAGS_SHLIB
+ 	    LDFLAGS_SHLIB_EXPORT="-rdynamic"
