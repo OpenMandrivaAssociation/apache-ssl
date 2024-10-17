@@ -15,7 +15,7 @@ Version:	%{rver}_%{sslver}
 Release:	%mkrel 3
 Group:		System/Servers
 License:	BSD-style
-URL:		http://www.apache-ssl.org/
+URL:		https://www.apache-ssl.org/
 Source0:	http://archive.apache.org/dist/httpd/apache_%{rver}.tar.gz
 Source1:	http://archive.apache.org/dist/httpd/apache_%{rver}.tar.gz.asc
 Source2:	ftp://ftp.ox.ac.uk/pub/crypto/SSL/Apache-SSL/apache_1.3.41+ssl_%{sslver}.tar.gz
