@@ -36,6 +36,11 @@ Patch7:		apache-1.3.22-man.patch
 Patch8:		apache_1.3.29-fPIC.diff
 Requires(post): rpm-helper
 Requires(preun): rpm-helper
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	perl >= 0:5.601
 BuildRequires:	db4-devel
 BuildRequires:	glibc-devel
